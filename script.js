@@ -2,9 +2,12 @@ const chars = "abcdefghijklmnopqrstuvwxyz0123456789".split("");
 const randomLength = 6;
 const urlBase = "https://prnt.sc/";
 
+
 function getCurrentUrl() {
     const buttons = $("#button-pack");
+
     const inputUrl = $("input[name=start-url]").val();
+
     if (!inputUrl) {
         buttons.hide();
         log("Please enter an URL", "danger");
