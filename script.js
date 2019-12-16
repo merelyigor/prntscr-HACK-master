@@ -41,7 +41,7 @@ function loadUrl() {
     const imageId = inputUrl[2];
 
     log("Loading: "+url);
-    $.get("https://cors.io/?"+url, function(content) {
+    $.get(url, function(content) {
         const r = content.match(/https:\/\/image\.prntscr\.com\/image\/.*?\.(png|jpeg|jpg)/);
 
         const container = $("#content-container");
