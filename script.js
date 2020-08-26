@@ -40,30 +40,33 @@ function loadUrl() {
     const url = inputUrl[0];
     const imageId = inputUrl[2];
 
-    log("Loading: "+url);
-    $.get(url, function(content) {
-        const r = content.match(/https:\/\/image\.prntscr\.com\/image\/.*?\.(png|jpeg|jpg)/);
-
-        const container = $("#content-container");
-
-        if (!r) {
-            log("Failed to load image "+imageId, "danger");
-            return;
-        }
-        const imageUrl = r[0];
-
-        let img = $("<img/>");
-
-        img.one("load", function() {
-            log(false);
-            container.empty();
-            container.append(img);
-        });
-
-        img.attr("src", imageUrl);
-
-    }, "html");
-
+    log("Loading: " + url);
+    console.log('url', url);
+    // $.get(url, function (content) {
+    //     const r = content.match(/https:\/\/image\.prntscr\.com\/image\/.*?\.(png|jpeg|jpg)/);
+    //
+    //     const container = $("#content-container");
+    //
+    //     if (!r) {
+    //         log("Failed to load image " + imageId, "danger");
+    //         return;
+    //     }
+    //     const imageUrl = r[0];
+    //
+    //     let img = $("<img/>");
+    //
+    //     img.one("load", function () {
+    //         log(false);
+    //         container.empty();
+    //         container.append(img);
+    //     });
+    //
+    //     img.attr("src", imageUrl);
+    //
+    // }, "html");
+    const container = $("#content-container");
+    container.empty();
+    container.append('<iframe src="' + url + '" frameborder="0" style="width: 100%;height: 100vh"></iframe>');
 
 }
 
@@ -78,16 +81,17 @@ function nextId(url) {
             log("What is this sorcery??", "danger");
             return false;
         }
-        if (index+1 == charsLen) {
+        if (index + 1 == charsLen) {
             reversed[k] = chars[0];
             continue;
         }
 
-        reversed[k] = chars[index+1];
+        reversed[k] = chars[index + 1];
         break;
     }
     return reversed.reverse().join("");
 }
+
 function prevId(url) {
     const charsLen = chars.length;
     const str = url.split("");
@@ -100,11 +104,11 @@ function prevId(url) {
             return false;
         }
         if (index == 0) {
-            reversed[k] = chars[charsLen-1];
+            reversed[k] = chars[charsLen - 1];
             continue;
         }
 
-        reversed[k] = chars[index-1];
+        reversed[k] = chars[index - 1];
         break;
     }
     return reversed.reverse().join("");
@@ -130,8 +134,8 @@ function loadNext() {
 function randomPage() {
     let random = [];
 
-    for (let i=0; i<randomLength; i++) {
-        random[i] = chars[Math.floor(Math.random()*chars.length)];
+    for (let i = 0; i < randomLength; i++) {
+        random[i] = chars[Math.floor(Math.random() * chars.length)];
     }
 
     const url = urlBase + random.join("");
@@ -150,7 +154,7 @@ function log(str, type) {
         return;
     }
 
-    const alertClass = "alert-"+type;
+    const alertClass = "alert-" + type;
     if (!lastLogClass) {
         lastLogClass = alertClass;
         log.addClass(alertClass);
@@ -165,11 +169,11 @@ function log(str, type) {
     log.text(str);
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
     log(false);
 });
 
-document.onkeydown = function(e) {
+document.onkeydown = function (e) {
     e = e || window.event;
     const key = e.key;
 
