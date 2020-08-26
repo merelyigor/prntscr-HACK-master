@@ -14,4 +14,4 @@ later I use my server to fix the image display problem
 вот как это работает сейчас с хром расширением / this is how it works now with chrome extension
 
 
-![PrntScr Browser-2020-08-26 12-43-27.png](PrntScr Browser-2020-08-26 12-43-27.png "PrntScr Browser-2020-08-26 12-43-27.png")
+![PrntScr Browser](1.png "PrntScr Browser-2020-08-26 12-43-27.png")
